@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ShopHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#1E40AF',
+                        accent: '#F59E0B',
+                        success: '#16A34A',
+                        error: '#DC2626',
+                        warning: '#F59E0B'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji']
+                    }
+                }
+            }
+        }
+    </script>
+    <style> body{font-family:Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans;} </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="text-2xl font-bold text-primary">ShopHub</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-primary transition-colors">Home</a>
+                    <a href="products.html" class="text-gray-700 hover:text-primary transition-colors">Products</a>
+                    <a href="categories.html" class="text-gray-700 hover:text-primary transition-colors">Categories</a>
+                    <a href="about.html" class="text-gray-700 hover:text-primary transition-colors">About</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-primary transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Progress -->
+    <header class="bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <ol class="grid grid-cols-3 gap-4">
+                <li class="step-item text-center">
+                    <div class="mx-auto h-10 w-10 rounded-full flex items-center justify-center bg-primary text-white font-semibold">1</div>
+                    <p class="mt-2 text-sm font-medium">Shipping</p>
+                </li>
+                <li class="step-item text-center opacity-60" id="step-payment-ind">
+                    <div class="mx-auto h-10 w-10 rounded-full flex items-center justify-center bg-gray-200 text-gray-700 font-semibold">2</div>
+                    <p class="mt-2 text-sm font-medium">Payment</p>
+                </li>
+                <li class="step-item text-center opacity-60" id="step-review-ind">
+                    <div class="mx-auto h-10 w-10 rounded-full flex items-center justify-center bg-gray-200 text-gray-700 font-semibold">3</div>
+                    <p class="mt-2 text-sm font-medium">Review</p>
+                </li>
+            </ol>
+        </div>
+    </header>
+
+    <!-- Checkout Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Forms -->
+            <section class="lg:col-span-2 space-y-8">
+                <!-- Shipping -->
+                <form id="form-shipping" class="bg-white rounded-xl p-6 shadow-sm space-y-5">
+                    <h2 class="text-xl font-semibold">Shipping Address</h2>
+                    <div class="grid md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2">First Name</label>
+                            <input id="shipFirst" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2">Last Name</label>
+                            <input id="shipLast" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-700 mb-2">Email</label>
+                        <input id="shipEmail" type="email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-700 mb-2">Phone</label>
+                        <input id="shipPhone" type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-700 mb-2">Address</label>
+                        <input id="shipAddress" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-5">
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2">City</label>
+                            <input id="shipCity" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2">State</label>
+                            <input id="shipState" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2">Postal Code</label>
+                            <input id="shipZip" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2">Country</label>
+                            <input id="shipCountry" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2">Shipping Method</label>
+                            <select id="shipMethod" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option value="standard">Standard (3-5 days) - $5.00</option>
+                                <option value="express">Express (1-2 days) - $15.00</option>
+                                <option value="pickup">Store Pickup - Free</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="submit" class="bg-primary hover:bg-secondary text-white font-semibold px-6 py-3 rounded-lg">Continue to Payment</button>
+                    </div>
+                </form>
+
+                <!-- Payment -->
+                <form id="form-payment" class="bg-white rounded-xl p-6 shadow-sm space-y-5 hidden">
+                    <h2 class="text-xl font-semibold">Payment Details</h2>
+                    <div>
+                        <label class="block text-sm text-gray-700 mb-2">Cardholder Name</label>
+                        <input id="payName" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-2">Card Number</label>
+                            <input id="payNumber" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+                        </div>
+                        <div class="grid grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-sm text-gray-700 mb-2">Expiry (MM/YY)</label>
+                                <input id="payExpiry" placeholder="MM/YY" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-700 mb-2">CVC</label>
+                                <input id="payCvc" inputmode="numeric" maxlength="4" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <button type="button" id="backToShipping" class="text-gray-700 hover:text-primary">Back to Shipping</button>
+                        <button type="submit" class="bg-primary hover:bg-secondary text-white font-semibold px-6 py-3 rounded-lg">Review Order</button>
+                    </div>
+                </form>
+
+                <!-- Review -->
+                <form id="form-review" class="bg-white rounded-xl p-6 shadow-sm space-y-5 hidden">
+                    <h2 class="text-xl font-semibold">Review & Place Order</h2>
+                    <div id="reviewShipping" class="text-gray-700"></div>
+                    <div id="reviewPayment" class="text-gray-700"></div>
+                    <label class="flex items-start space-x-3">
+                        <input id="acceptTerms" type="checkbox" class="mt-1 rounded border-gray-300 text-primary focus:ring-primary" />
+                        <span class="text-sm text-gray-700">I agree to the Terms and Conditions and confirm the information is correct.</span>
+                    </label>
+                    <div class="flex items-center gap-3">
+                        <button type="button" id="backToPayment" class="text-gray-700 hover:text-primary">Back to Payment</button>
+                        <button id="btnPlaceOrder" type="submit" class="bg-primary disabled:opacity-50 hover:bg-secondary text-white font-semibold px-6 py-3 rounded-lg" disabled>Place Order</button>
+                    </div>
+                    <p id="orderSuccess" class="hidden text-success font-medium">Order placed! Your order ID is <span id="orderId"></span>.</p>
+                </form>
+            </section>
+
+            <!-- Summary -->
+            <aside class="lg:col-span-1">
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <h2 class="text-lg font-semibold mb-4">Order Summary</h2>
+                    <div id="summaryItems" class="space-y-4 mb-4"></div>
+                    <div class="space-y-2 text-sm text-gray-700 border-t pt-4">
+                        <div class="flex justify-between"><span>Subtotal</span><span id="sumSubtotal">$0.00</span></div>
+                        <div class="flex justify-between"><span>Shipping</span><span id="sumShipping">$0.00</span></div>
+                        <div class="flex justify-between"><span>Tax (8%)</span><span id="sumTax">$0.00</span></div>
+                        <div class="flex justify-between text-success" id="promoRow" style="display:none;"><span>Promo</span><span id="sumPromo">-$0.00</span></div>
+                        <div class="flex justify-between font-semibold text-gray-900 border-t pt-2"><span>Total</span><span id="sumTotal">$0.00</span></div>
+                    </div>
+                    <div class="mt-4">
+                        <label class="block text-sm text-gray-700 mb-2">Promo Code</label>
+                        <div class="flex gap-2">
+                            <input id="promoInput" placeholder="e.g., SAVE10" class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
+                            <button id="applyPromo" class="px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200">Apply</button>
+                        </div>
+                        <p id="promoMsg" class="mt-2 text-sm text-gray-600"></p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <script src="js/checkout.js"></script>
+</body>
+</html>
+
